@@ -14,7 +14,14 @@ export class UsuarioService {
   ) { }
 
   getUsers() {
-    return this.http.get(`${this.url}/users?page=2`)
+    return this.http.get(`${this.url}/users?page=2&delay=6`)
+      .pipe(
+        // tslint:disable-next-line: no-string-literal
+        map(resp => resp['data'])
+      );
+  }
+  getUserById(id: string) {
+    return this.http.get(`${this.url}/users/${id}`)
       .pipe(
         // tslint:disable-next-line: no-string-literal
         map(resp => resp['data'])
